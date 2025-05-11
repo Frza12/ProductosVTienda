@@ -1,0 +1,72 @@
+body {
+    margin: 0; 
+    background-color: beige;
+} 
+
+.bloque-superior{
+    width: 100%; 
+    height: 50px; 
+    background-color: navy;
+} 
+
+.titulo{
+    text-align: center;
+} 
+
+.consultas{
+    background-color: gainsboro; 
+    width: 800px; 
+    height: 100px;  
+    margin-right: auto; 
+    margin-left: auto; 
+    border-radius: 5px; 
+  
+}
+
+.consultas form{
+    display: inline-block;
+}
+
+.contenedor-lista{  
+    margin-top: 30px;
+    background-color: gainsboro;
+    width: 500px; 
+    height: 200px; 
+    margin-right: auto; 
+    margin-left: auto; 
+    padding: 50px 20px 100px 70px; 
+    border-radius: 10px; 
+    overflow-x: auto; 
+    overflow-y: auto;
+} 
+
+.boton-c1, .boton-c2, .boton-c3, .boton-c4, .boton-c5, .boton-c6,
+.boton-c7, .boton-c8, .boton-c9, .boton-c10, .boton-c11, .boton-c12{
+    margin-left: 5px; 
+    margin-top: 10px; 
+    background-color: whitesmoke; 
+    font-size: 14px; 
+    border-radius: 4px; 
+   
+} 
+
+
+.lista-categorias{
+    margin-left: 5px; 
+    margin-top: 10px; 
+    font-size: 14px; 
+    background-color: whitesmoke; 
+    
+} 
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Así no se aplasta demasiado */
+} 
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    word-break: break-word;
+}
