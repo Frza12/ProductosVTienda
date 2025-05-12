@@ -3,31 +3,41 @@
 session_start();
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['nombre_usuario'] = $_POST['nombre_usuario'] ?? 'Invitado';
-}
-
-
-if (!isset($_SESSION['nombre_usuario'])) {
-    header("Location: inicio.php");
-    exit();
-}
-
-$usuario = $_SESSION['nombre_usuario'];
-
-
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "franrg812";
 $db_name = "inventario";
 
-try {
-    $con = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-} catch (mysqli_sql_exception) {
-    echo "No se pudo conectar";
+$con = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
+if (!$con) {
+    die("No se pudo conectar a la base de datos");
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $usuario = $_POST['nombre_usuario'];
+    $contrasena = $_POST['contrasena'];
+
+    $sql_login = "SELECT * FROM usuarios WHERE nombre_usuario = ? AND contrasena = ?";
+    $stmt = mysqli_prepare($con, $sql_login);
+    mysqli_stmt_bind_param($stmt, "ss", $usuario, $contrasena);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $_SESSION['usuario'] = $usuario;
+    } else {
+        echo "<script>alert('Credenciales incorrectas'); window.location.href = 'index.php';</script>";
+        exit;
+    }
+}
+
+if (!isset($_SESSION['usuario'])) {
+    echo "<script>alert('Debe iniciar sesión'); window.location.href = 'index.php';</script>";
+    exit;
+}
+
+$usuario = $_SESSION['usuario'];
 
 $productos = [];
 $categoriaSeleccionada = $_GET['categoria'] ?? '';
@@ -111,7 +121,7 @@ if ($con) {
         $sql = "SELECT * FROM vista_clasificacion_precio";
         $resultado = mysqli_query($con, $sql);
     } else {
-        $sql = "SELECT * FROM vista_inventario";
+        $sql = "SELECT * FROM Productos";
         $resultado = mysqli_query($con, $sql);
     }
 
@@ -304,7 +314,7 @@ a{
     <div class="bloque-superior"> 
         <p>
        Usuario: <?= htmlspecialchars($usuario) ?>
-        <a href="inicio.php">Volver al inicio de sesión</a>
+        <a href="index.php">Volver al inicio de sesión</a>
         </p>
     </div>
     <h2 class="titulo">Listado</h2>
