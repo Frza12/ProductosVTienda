@@ -62,7 +62,7 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px; /* Así no se aplasta demasiado */
+    min-width: 600px;
 } 
 
 th, td {
