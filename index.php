@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,12 +52,12 @@ input {
     <div class="iniciar-sesion">
         
     <h2>Iniciar sesion</h2> 
-<form action="consultas.php" method="POST">
+<form method="POST" action="consultas.php">
         <label>Nombre de usuario</label>  
-        <input type="text" name="nombre_usuario" id="nombre_usuario" required><br><br> 
+        <input type="text" name="nombre_usuario" id="usuario" required><br><br> 
 
         <label>Contraseña</label> 
-        <input type="password" name="contrasena_usuario" id="contrasena_usuario" required><br><br>
+        <input type="password" name="contrasena" id="contrasena" required><br><br>
         <button type="submit">Iniciar sesion</button>
     </form>
     </div>
